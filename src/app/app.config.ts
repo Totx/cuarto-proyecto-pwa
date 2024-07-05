@@ -5,9 +5,16 @@ import { routes } from './app.routes';
 import { provideServiceWorker } from '@angular/service-worker';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideServiceWorker('ngsw-worker.js', {
-            // enabled: !isDevMode(),
-            enabled : true,
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), 
+          // provideServiceWorker('ngsw-worker.js', {
+          //   // enabled: !isDevMode(),
+          //   enabled : true,
+          //   registrationStrategy: 'registerWhenStable:30000'
+          // }),
+          provideServiceWorker('sw.js', {
+            //enabled: !isDevMode(),
+            enabled: true,
             registrationStrategy: 'registerWhenStable:30000'
-          })]
+            //registrationStrategy : 'registerImmediately'
+        })]
 };
